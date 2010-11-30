@@ -1,0 +1,13 @@
+{
+  "name": "mongrel2",
+  "description": "Mongrel2 handler for node",
+  "version": "0.0.0",
+  "homepage": "https://github.com/darkhelmet/node-mongrel2",
+  "author": "Daniel Huckstep <darkhelmet@darkhelmetlive.com> (http://blog.darkhax.com/)",
+  "directories": {
+    "lib": "lib"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
