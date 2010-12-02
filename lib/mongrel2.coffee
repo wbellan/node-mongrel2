@@ -52,17 +52,13 @@ split = (str, chr, limit) ->
 
 parseNetstring = (ns) ->
   # SIZE:HEADERS,
-  Sys.puts("ns: #{ns}")
   [len, rest] = split(ns, ':', 2)
-  Sys.puts("len: '#{len}', rest: '#{rest}'")
   len = parseInt(len)
-  Sys.puts("before throw: #{rest[len]}")
   throw "Netstring did not end in ','" unless rest[len] == ','
   [rest.slice(0, len), rest.slice(len + 1)]
 
 parse = (msg) ->
   [uuid, connId, path, rest] = split(msg, ' ', 4)
-  Sys.puts("uuid: #{uuid}, connId: #{connId}, path: #{path}, rest: #{rest}")
   [headers, rest] = parseNetstring(rest)
   body = parseNetstring(rest)[0]
   {
@@ -91,9 +87,5 @@ exports.connect = (recv_spec, send_spec, ident, callback) ->
 
   pull.on 'message', (envelope, blank, data) ->
     msg = parse(envelope.toString('utf8'))
-    Sys.puts(JSON.stringify(msg))
     callback msg, (status, headers, body) ->
-      Sys.puts('in callback')
-      resp = "#{msg.uuid} #{String(msg.connId).length},#{msg.connId} #{buildHttpResponse(status, headers, body)}"
-      Sys.puts("resp: #{resp}")
-      pub.send(resp)
+      pub.send("#{msg.uuid} #{String(msg.connId).length}:#{msg.connId}, #{buildHttpResponse(status, headers, body)}")
