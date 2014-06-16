@@ -2,11 +2,14 @@
 
 Please see [m2njs](https://github.com/wbellan/m2njs)!
 
-Since taking over this abandoned project, I have updated the source, and republished under m2njs. You can install the latest version of this Mongrel2 handler for Node.js with npm:
+Since taking over this abandoned project, I have updated the source, and republished under m2njs. You can install the latest version of this Mongrel2 handler for Node.js using npm:
 
 ```bash
 npm install mongrel2
 ```
+
+With that said, the instructions below are still valid and work, with exception of 'mongrel2' now becomes 'm2njs'.
+
 
 # node-mongrel2
 
